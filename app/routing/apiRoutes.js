@@ -1,29 +1,42 @@
 // LOAD DATA
 const path = require("path");
-const friendData = require("../data/friends");
+const friendsArray = require("../data/friends");
 
-// ROUTING
+// ROUTING 
 
-module.exports = function(app) {
+module.exports = function (app) {
     // API GET requests
     app.get("/api/friends", function (req, res) {
-        res.json(friendData);
+        res.json(friendsArray);
     })
-    
+
     // API POST requests
-    app.post("/api/friends", function(req, res) {
+    app.post("/api/friends", function (req, res) {
         let newFriend = req.body;
-        console.log(newFriend);
+        // console.log(newFriend);
         let newFriendAnswers = newFriend.scores;
-        console.log(newFriendAnswers);
+        // console.log(newFriendAnswers);
+        let closestMatch;
+        let closestMatchImage;
+        let totalDifference = 10000;
 
-        //Matching Logic
+        // Loop through all existing friends
+        for (let i = 0; i < friendsArray.length; i++) {
+            let diff = 0;
+            for (let j = 0; j < newFriendAnswers.length; j++) {
+                diff += Math.abs(friendsArray[i].scores[j] - newFriendAnswers[j]);
+            }
 
-        // BUILD LOGIC HERE
-        // THINGS TO DO HERE
-        // A POST routes /api/friends. This will be used to handle incoming survey results. This route will also be used to handle the compatibility logic.
+            // Find closest match
+            if (diff < totalDifference) {
+                totalDifference = diff;
+                closestMatch = friendsArray[i].name;
+                closestMatchImage = friendsArray[i].photo;
+            }
+        }
 
-        friendData.push(newFriend);
-        res.json({status: "OK", name: name, photo: photo});
+        friendsArray.push(newFriend);
+        console.log(closestMatch);
+        res.json({ status: "OK", name: closestMatch, photo: closestMatchImage });
     });
 };
