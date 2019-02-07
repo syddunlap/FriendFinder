@@ -1,0 +1,25 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "a friend finder application that connects new users with a friend most similar to themselves",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syddunlap/FriendFinder.git"
+  },
+  "author": "sydney dunlap",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/syddunlap/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/syddunlap/FriendFinder#readme"
+}
