@@ -207,10 +207,10 @@
             console.log(newFriend);
             $.post("/api/friends", newFriend, function(data) {
 
-                $("#newName").text(data.closestMatch);
-                $("#newPhoto").attr("src", data.closestMatchImage);
-
-                // $("#matchModal").modal("toggle");
+                console.log(data.name);
+                console.log(data.name);
+                $("#newName").text(data.name);
+                $("#newPhoto").attr("src", data.photo);
 
                 // Clear the form when submitting
                 $("#name").val("");

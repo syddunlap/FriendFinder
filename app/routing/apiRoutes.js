@@ -22,14 +22,14 @@ module.exports = function (app) {
 
         // Loop through all existing friends
         for (let i = 0; i < friendsArray.length; i++) {
-            let diff = 0;
+            let difference = 0;
             for (let j = 0; j < newFriendAnswers.length; j++) {
-                diff += Math.abs(friendsArray[i].scores[j] - newFriendAnswers[j]);
+                difference += Math.abs(friendsArray[i].scores[j] - newFriendAnswers[j]);
             }
 
             // Find closest match
-            if (diff < totalDifference) {
-                totalDifference = diff;
+            if (difference < totalDifference) {
+                totalDifference = difference;
                 closestMatch = friendsArray[i].name;
                 closestMatchImage = friendsArray[i].photo;
             }
@@ -37,6 +37,7 @@ module.exports = function (app) {
 
         friendsArray.push(newFriend);
         console.log(closestMatch);
+        console.log(closestMatchImage);
         res.json({ status: "OK", name: closestMatch, photo: closestMatchImage });
     });
 };
