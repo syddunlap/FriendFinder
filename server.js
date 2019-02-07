@@ -1,16 +1,16 @@
-var express = require("express");
-var app = express();
+const express = require("express");
+const app = express();
 
 // Sets an initial port. 
-var PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // ROUTER
-// require("./routing/apiRoutes")(app);
-// require("./routing/htmlRoutes")(app);
+require("./app/routing/apiRoutes")(app);
+require("./app/routing/htmlRoutes")(app);
 
 // LISTENER
 app.listen(PORT, function() {
